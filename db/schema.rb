@@ -26,14 +26,14 @@ ActiveRecord::Schema.define(version: 20161008140808) do
   end
 
   create_table "people", force: :cascade do |t|
-    t.string   "first_name",    null: false
+    t.string   "first_name",                null: false
     t.string   "last_name"
     t.string   "email"
     t.date     "date_of_birth"
-    t.integer  "gender",        null: false
-    t.integer  "household_id",  null: false
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.integer  "gender",        default: 0, null: false
+    t.integer  "household_id",              null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
     t.index ["household_id"], name: "index_people_on_household_id", using: :btree
   end
 
@@ -48,6 +48,6 @@ ActiveRecord::Schema.define(version: 20161008140808) do
     t.index ["person_id"], name: "index_vehicles_on_person_id", using: :btree
   end
 
-  add_foreign_key "people", "households"
-  add_foreign_key "vehicles", "people"
+  add_foreign_key "people", "households", on_delete: :cascade
+  add_foreign_key "vehicles", "people", on_delete: :cascade
 end

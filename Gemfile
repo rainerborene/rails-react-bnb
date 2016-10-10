@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
 gem 'email_validator', require: 'email_validator/strict'
+gem 'jsonapi-resources', github: 'cerebris/jsonapi-resources'
 gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.0'
 
@@ -26,6 +27,7 @@ end
 
 group :test do
   gem 'database_rewinder'
+  gem 'fabrication'
   gem 'rspec-rails'
   gem 'shoulda-matchers'
 end

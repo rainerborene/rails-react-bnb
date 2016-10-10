@@ -5,8 +5,8 @@ class CreatePeople < ActiveRecord::Migration[5.0]
       t.string :last_name
       t.string :email
       t.date :date_of_birth
-      t.integer :gender, null: false
-      t.belongs_to :household, null: false, index: true, foreign_key: true
+      t.integer :gender, null: false, default: 0
+      t.belongs_to :household, null: false, foreign_key: { on_delete: :cascade }
       t.timestamps
     end
   end

@@ -5,7 +5,7 @@ class CreateVehicles < ActiveRecord::Migration[5.0]
       t.string :model, null: false
       t.integer :year, null: false
       t.string :license_plate, null: false
-      t.belongs_to :person, null: false, index: true, foreign_key: true
+      t.belongs_to :person, null: false, foreign_key: { on_delete: :cascade }
       t.timestamps
     end
   end
