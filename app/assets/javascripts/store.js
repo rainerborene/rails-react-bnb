@@ -1,15 +1,19 @@
-import { createStore, combineReducers, compose } from 'redux';
-import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
+import { createStore, applyMiddleware, compose } from 'redux';
+import { syncHistoryWithStore } from 'react-router-redux';
 import { browserHistory } from 'react-router';
+import thunk from 'redux-thunk';
 import reducers from './reducers';
 
+const defaultState = {
+  households: window.Households,
+};
+
 const enhancers = compose(
+  applyMiddleware(thunk),
   window.devToolsExtension ? window.devToolsExtension() : f => f
 );
 
-const store = createStore(
-  combineReducers({ ...reducers, routing: routerReducer }), {}, enhancers
-);
+const store = createStore(reducers, defaultState, enhancers);
 
 export const history = syncHistoryWithStore(browserHistory, store);
 
