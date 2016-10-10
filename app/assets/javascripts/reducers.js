@@ -4,7 +4,6 @@ import { routerReducer } from 'react-router-redux';
 function households(state = [], action) {
   switch (action.type) {
     case 'DELETE_HOUSEHOLD': {
-      console.log('State => ', state);
       const index = state.findIndex(item => item.id === action.id);
       return [
         ...state.slice(0, index),

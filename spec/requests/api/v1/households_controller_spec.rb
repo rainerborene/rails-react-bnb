@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe API::V1::HouseholdsController, type: :request do
   describe 'GET /api/v1/households' do
-    it 'fetches household records' do
+    it 'fetches records' do
       Fabricate :household
 
       get api_v1_households_path, headers: api_headers
@@ -13,7 +13,7 @@ RSpec.describe API::V1::HouseholdsController, type: :request do
   end
 
   describe 'POST /api/v1/households' do
-    it 'creates a new record' do
+    it 'creates a new entry' do
       household = Fabricate.build :household
 
       expect do
@@ -27,7 +27,7 @@ RSpec.describe API::V1::HouseholdsController, type: :request do
   end
 
   describe 'PATCH /api/v1/households/:id' do
-    it 'creates a new record' do
+    it 'updates entry' do
       household = Fabricate :household
       household.address = 'Rua Tomé de Souza'
 
@@ -42,7 +42,7 @@ RSpec.describe API::V1::HouseholdsController, type: :request do
   end
 
   describe 'DELETE /api/v1/households/:id' do
-    it 'creates a new record' do
+    it 'deletes entry' do
       household = Fabricate :household
 
       delete api_v1_household_path(household),

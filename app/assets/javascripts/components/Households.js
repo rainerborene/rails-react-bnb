@@ -3,7 +3,7 @@ import { Button, Table, Glyphicon } from 'react-bootstrap';
 
 class Households extends React.Component {
 
-  static emptyRow() {
+  static makeEmptyRow() {
     return (
       <tr>
         <td colSpan="7" className="text-center">No records found.</td>
@@ -27,7 +27,7 @@ class Households extends React.Component {
         <td>{item.state}</td>
         <td>{item.number_of_bedrooms}</td>
         <td>
-          <Button bsStyle="link" onClick={this.props.deleteHousehold.bind(null, item.id)}>
+          <Button bsStyle="link" onClick={() => this.props.deleteHousehold(item.id)}>
             <Glyphicon glyph="trash" />
           </Button>
         </td>
@@ -54,7 +54,7 @@ class Households extends React.Component {
           </thead>
           <tbody>
             {this.props.households.map(this.makeRow)}
-            {!this.props.households.length ? this.constructor.emptyRow() : null}
+            {!this.props.households.length ? this.constructor.makeEmptyRow() : null}
           </tbody>
         </Table>
       </div>
