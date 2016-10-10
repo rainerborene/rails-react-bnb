@@ -11,5 +11,12 @@ Bundler.require(*Rails.groups)
 
 module House
   class Application < Rails::Application
+    config.generators do |g|
+      g.javascripts false
+      g.stylesheets false
+      g.helper false
+    end
+
+    config.browserify_rails.commandline_options = '-t babelify'
   end
 end

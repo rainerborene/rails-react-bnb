@@ -6,8 +6,7 @@ gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.0'
 
 # Assets
-gem 'jquery-rails'
-gem 'react-rails', '~> 1.9'
+gem 'browserify-rails'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 
