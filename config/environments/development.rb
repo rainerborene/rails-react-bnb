@@ -19,4 +19,8 @@ Rails.application.configure do
   config.assets.debug = true
   config.assets.quiet = true
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+
+  config.action_controller.asset_host = proc do |source|
+    'http://localhost:8080' if source =~ /bundle\.js$/i
+  end
 end
