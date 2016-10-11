@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, Table, Glyphicon } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 
 class Households extends React.Component {
 
@@ -37,8 +38,14 @@ class Households extends React.Component {
 
   render() {
     return (
-      <div className="container">
-        <h1>Households</h1>
+      <div className="households">
+        <header className="header">
+          <h1>Households</h1>
+
+          <LinkContainer to={{ pathname: '/households/new' }}>
+            <Button bsSize="large">New Household</Button>
+          </LinkContainer>
+        </header>
 
         <Table>
           <thead>

@@ -6,4 +6,6 @@ Rails.application.routes.draw do
       jsonapi_resources :households
     end
   end
+
+  get '/*path', to: 'home#index'
 end

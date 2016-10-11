@@ -16,6 +16,7 @@ const config = {
       'react-dom',
       'react-redux',
       'react-router',
+      'react-router-bootstrap',
       'react-router-redux',
       'redux',
       'redux-thunk'
