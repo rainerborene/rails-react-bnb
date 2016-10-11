@@ -12,6 +12,8 @@
     <%= javascript_tag do %>
       window.Households = <%= raw Household.all.to_json %>;
     <% end %>
+
+    <%= javascript_include_tag :libs %>
     <%= javascript_include_tag :application %>
   </body>
 </html>
