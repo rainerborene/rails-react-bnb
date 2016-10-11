@@ -9,6 +9,10 @@
   <body>
     <%= yield %>
 
+    <%= javascript_tag do %>
+      window.Households = <%= raw @households.to_json %>;
+    <% end %>
+
     <%= javascript_include_tag 'vendor.bundle' %>
     <%= javascript_include_tag 'bundle' %>
   </body>
