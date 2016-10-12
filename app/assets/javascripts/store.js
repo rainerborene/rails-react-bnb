@@ -4,7 +4,7 @@ import { browserHistory } from 'react-router';
 import thunk from 'redux-thunk';
 import reducers from './reducers';
 
-const defaultState = {
+const initialState = {
   households: window.Households,
 };
 
@@ -13,7 +13,7 @@ const enhancers = compose(
   window.devToolsExtension ? window.devToolsExtension() : f => f
 );
 
-const store = createStore(reducers, defaultState, enhancers);
+const store = createStore(reducers, initialState, enhancers);
 
 const history = syncHistoryWithStore(browserHistory, store);
 

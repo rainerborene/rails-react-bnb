@@ -61,7 +61,7 @@ class Households extends React.Component {
           </thead>
           <tbody>
             {this.props.households.map(this.makeRow)}
-            {!this.props.households.length ? this.constructor.makeEmptyRow() : null}
+            {!this.props.households.length && this.constructor.makeEmptyRow()}
           </tbody>
         </Table>
       </div>
