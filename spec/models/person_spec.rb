@@ -8,4 +8,5 @@ RSpec.describe Person, type: :model do
   end
   it { is_expected.to allow_value('maria@google.com').for(:email) }
   it { is_expected.not_to allow_value('something').for(:email) }
+  it { is_expected.to belong_to :household }
 end

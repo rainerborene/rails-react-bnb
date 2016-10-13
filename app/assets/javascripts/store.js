@@ -1,16 +1,20 @@
 import { createStore, applyMiddleware, compose } from 'redux';
-import { syncHistoryWithStore } from 'react-router-redux';
+import { syncHistoryWithStore, routerMiddleware } from 'react-router-redux';
 import { browserHistory } from 'react-router';
 import thunk from 'redux-thunk';
 import reducers from './reducers';
+import JSONAPI from './jsonapi';
+
+const DB = window.DB || {};
 
 const initialState = {
-  households: window.Households,
+  households: JSONAPI.prettify(DB.households),
+  people: JSONAPI.prettify(DB.people),
 };
 
 const enhancers = compose(
-  applyMiddleware(thunk),
-  window.devToolsExtension ? window.devToolsExtension() : f => f
+  applyMiddleware(thunk, routerMiddleware(browserHistory)),
+  window.devToolsExtension ? window.devToolsExtension() : f => f,
 );
 
 const store = createStore(reducers, initialState, enhancers);

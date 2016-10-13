@@ -1,5 +1,7 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
+
 import FieldGroup from './FieldGroup';
 
 class HouseholdForm extends React.Component {
@@ -8,12 +10,19 @@ class HouseholdForm extends React.Component {
     super(props);
 
     this.onSubmit = this.onSubmit.bind(this);
+    this.isPending = this.isPending.bind(this);
   }
 
   onSubmit(e) {
     e.preventDefault();
 
-    this.props.createHousehold(this.props.household);
+    if (this.isPending()) return;
+
+    this.props.createHousehold(this.props.household, this.props.nextStep);
+  }
+
+  isPending() {
+    return this.props.householdForm.$form.pending;
   }
 
   render() {
@@ -34,7 +43,13 @@ class HouseholdForm extends React.Component {
               model="household.number_of_bedrooms"
             />
 
-            <Button type="submit">Submit</Button>
+            <Button type="submit" bsStyle="primary">Next</Button>
+
+            {' '}
+
+            <LinkContainer to={{ pathname: '/' }} active={false}>
+              <Button disabled={this.isPending()}>Cancel</Button>
+            </LinkContainer>
           </form>
         </div>
       </div>

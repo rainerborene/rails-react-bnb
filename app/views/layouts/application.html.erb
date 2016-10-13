@@ -10,7 +10,9 @@
     <%= yield %>
 
     <%= javascript_tag do %>
-      window.Households = <%= raw @households.to_json %>;
+      var DB = {};
+      DB.households = <%= households_json %>;
+      DB.people = <%= people_json %>;
     <% end %>
 
     <%= javascript_include_tag 'vendor.bundle' %>

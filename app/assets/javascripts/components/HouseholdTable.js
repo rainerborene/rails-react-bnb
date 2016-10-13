@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Table, Glyphicon } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 
-class Households extends React.Component {
+class HouseholdTable extends React.Component {
 
   static makeEmptyRow() {
     return (
@@ -18,7 +18,7 @@ class Households extends React.Component {
     this.makeRow = this.makeRow.bind(this);
   }
 
-  makeRow(item) {
+  makeRow(item, index) {
     return (
       <tr key={item.id}>
         <td>{item.id}</td>
@@ -28,7 +28,7 @@ class Households extends React.Component {
         <td>{item.state}</td>
         <td>{item.number_of_bedrooms}</td>
         <td>
-          <Button bsStyle="link" onClick={() => this.props.deleteHousehold(item.id)}>
+          <Button bsStyle="link" onClick={() => this.props.deleteHousehold(item.id, index)}>
             <Glyphicon glyph="trash" />
           </Button>
         </td>
@@ -55,7 +55,7 @@ class Households extends React.Component {
               <th>Zip</th>
               <th>City</th>
               <th>State</th>
-              <th>Number Of Bedrooms</th>
+              <th>Number of Bedrooms</th>
               <th />
             </tr>
           </thead>
@@ -70,4 +70,4 @@ class Households extends React.Component {
 
 }
 
-export default Households;
+export default HouseholdTable;
