@@ -19,7 +19,6 @@ class PeopleForm extends React.Component {
     this.onSubmit = this.onSubmit.bind(this);
     this.isPending = this.isPending.bind(this);
     this.makePerson = this.makePerson.bind(this);
-    this.nextStep = this.nextStep.bind(this);
   }
 
   onSubmit(e) {
@@ -37,21 +36,13 @@ class PeopleForm extends React.Component {
     return this.props.personForm.$form.pending;
   }
 
-  deletePerson(person, index) {
-    this.props.deletePerson(person.id, index);
-  }
-
-  nextStep() {
-    this.props.dispatch({ type: 'CHANGE_STEP', step: 3 });
-  }
-
   makePerson(person, index) {
     return (
       <Panel key={person.id}>
         <button
           type="button"
           className="close pull-right"
-          onClick={() => this.deletePerson(person, index)}
+          onClick={() => this.props.deletePerson(person.id, index)}
         >
           <span>&times;</span>
         </button>
@@ -96,7 +87,7 @@ class PeopleForm extends React.Component {
               Create
             </Button>
 
-            <Button bsStyle="default" onClick={this.nextStep}>Continue</Button>
+            <Button bsStyle="default" onClick={this.props.nextStep}>Continue</Button>
           </ButtonToolbar>
         </form>
 

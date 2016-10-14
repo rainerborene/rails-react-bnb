@@ -1,61 +1,43 @@
-import { actions } from 'react-redux-form';
-import JSONAPI from './jsonapi';
+import { create, destroy } from './jsonapi';
 
-function request(path, options) {
-  return JSONAPI.request(`/api/v1/${path}`, options);
+export function previousStep() {
+  return dispatch => dispatch({ type: 'PREVIOUS_STEP' });
+}
+
+export function nextStep() {
+  return dispatch => dispatch({ type: 'NEXT_STEP' });
 }
 
 export function createHousehold(attributes) {
-  return (dispatch) => {
-    dispatch(actions.setPending('household', true));
-    dispatch(actions.resetValidity('household'));
-
-    return request('households', {
-      method: 'POST',
-      body: JSONAPI.prepare('households', attributes),
-    }).then((response) => {
-      const model = Object.assign({ id: response.data.id }, response.data.attributes);
-
-      dispatch(actions.push('households', model));
-      dispatch(actions.load('household', model));
-      dispatch(actions.setSubmitted('household'));
-
-      dispatch({ type: 'CHANGE_STEP', step: 2 });
-    }).catch((response) => {
-      const errors = JSONAPI.prettify(response);
-      Object.keys(errors).forEach(name =>
-        dispatch(actions.setErrors(`household.${name}`, errors[name]))
-      );
-      dispatch(actions.setSubmitFailed('household'));
-    });
-  };
+  return create({
+    model: 'household',
+    collection: 'households',
+    attributes,
+    after: dispatch => dispatch({ type: 'CHANGE_STEP', step: 2 }),
+  });
 }
 
 export function createPerson(attributes) {
-  return (dispatch) => {
-    dispatch(actions.setPending('person', true));
-    dispatch(actions.resetValidity('person'));
+  return create({
+    model: 'person',
+    collection: 'people',
+    attributes,
+  });
+}
 
-    return request('people', {
-      method: 'POST',
-      body: JSONAPI.prepare('people', attributes),
-    }).then((response) => {
-      const model = Object.assign({ id: response.data.id }, response.data.attributes);
+export function createVehicle(attributes) {
+  return create({
+    model: 'vehicle',
+    collection: 'vehicles',
+    attributes,
+    reset: true,
+  });
+}
 
-      dispatch(actions.push('people', model));
-      dispatch(actions.reset('person'));
-      dispatch(actions.setSubmitted('person'));
-    }).catch((response) => {
-      const errors = JSONAPI.prettify(response);
-      Object.keys(errors).forEach(name =>
-        dispatch(actions.setErrors(`person.${name}`, errors[name]))
-      );
-      dispatch(actions.setSubmitFailed('person'));
-    });
-  };
+export function deleteVehicle(id, index) {
+  return destroy({ collection: 'vehicles', id, index });
 }
 
 export function deletePerson(id, index) {
-  return dispatch => fetch(`/api/v1/people/${id}`, { method: 'DELETE' })
-    .then(() => dispatch(actions.remove('people', index)));
+  return destroy({ collection: 'people', id, index });
 }

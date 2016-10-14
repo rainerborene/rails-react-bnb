@@ -4,6 +4,10 @@ import { modelReducer, formReducer } from 'react-redux-form';
 
 function wizard(state = {}, action) {
   switch (action.type) {
+    case 'NEXT_STEP':
+      return { step: state.step + 1 };
+    case 'PREVIOUS_STEP':
+      return { step: state.step - 1 };
     case 'CHANGE_STEP':
       return { step: action.step };
     default:
@@ -19,12 +23,14 @@ export default combineReducers({
   people: modelReducer('people'),
   vehicles: modelReducer('vehicles'),
 
-  // forms
+  // models
   household: modelReducer('household'),
-  householdForm: formReducer('household'),
   person: modelReducer('person'),
-  personForm: formReducer('person'),
   vehicle: modelReducer('vehicle'),
+
+  // forms
+  householdForm: formReducer('household'),
+  personForm: formReducer('person'),
   vehicleForm: formReducer('vehicle'),
 
   wizard,

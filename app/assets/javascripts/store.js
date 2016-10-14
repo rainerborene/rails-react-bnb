@@ -3,12 +3,12 @@ import { syncHistoryWithStore, routerMiddleware } from 'react-router-redux';
 import { browserHistory } from 'react-router';
 import thunk from 'redux-thunk';
 import reducers from './reducers';
-import JSONAPI from './jsonapi';
+import { prettify } from './jsonapi';
 
 const initialState = {
-  households: JSONAPI.prettify(window.DB.households),
-  people: JSONAPI.prettify(window.DB.people),
-  vehicles: JSONAPI.prettify(window.DB.vehicles),
+  households: prettify(window.DB.households),
+  people: prettify(window.DB.people),
+  vehicles: prettify(window.DB.vehicles),
   wizard: { step: 1 },
 };
 
