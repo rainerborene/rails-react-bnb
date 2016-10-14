@@ -5,11 +5,11 @@ import thunk from 'redux-thunk';
 import reducers from './reducers';
 import JSONAPI from './jsonapi';
 
-const DB = window.DB || {};
-
 const initialState = {
-  households: JSONAPI.prettify(DB.households),
-  people: JSONAPI.prettify(DB.people),
+  households: JSONAPI.prettify(window.DB.households),
+  people: JSONAPI.prettify(window.DB.people),
+  vehicles: JSONAPI.prettify(window.DB.vehicles),
+  wizard: { step: 1 },
 };
 
 const enhancers = compose(

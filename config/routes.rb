@@ -3,11 +3,9 @@ Rails.application.routes.draw do
 
   namespace :api, format: false do
     namespace :v1 do
-      jsonapi_resources :households do
-        jsonapi_resources :people do
-          jsonapi_resources :vehicles
-        end
-      end
+      jsonapi_resources :vehicles
+      jsonapi_resources :households
+      jsonapi_resources :people
     end
   end
 
