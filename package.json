@@ -5,7 +5,7 @@
   "version": "0.0.1",
   "repository": {
     "type": "git",
-    "url": "https://github.com/rainerborene/house.git"
+    "url": "https://github.com/rainerborene/rails-react-bnb.git"
   },
   "engines": {
     "node": "5.10.0",

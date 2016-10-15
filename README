@@ -1,0 +1,4 @@
+$ bundle install
+$ npm install
+$ rails db:create db:migrate
+$ foreman start -f Procfile.dev
