@@ -3,6 +3,7 @@ import { Button, ButtonToolbar, FormGroup, FormControl, Panel, ControlLabel } fr
 import { createFieldClass, controls } from 'react-redux-form';
 
 import FieldGroup from './FieldGroup';
+import { validationState } from '../utils';
 
 const SelectField = createFieldClass({
   FormControl: controls.select,
@@ -78,7 +79,7 @@ class VehiclesForm extends React.Component {
             model="vehicle.license_plate"
           />
 
-          <FormGroup controlId="person">
+          <FormGroup controlId="person_id" validationState={validationState(this.props, 'vehicle.person')}>
             <ControlLabel>Person</ControlLabel>
             <SelectField model="vehicle.person_id">
               <FormControl componentClass="select" placeholder="select">

@@ -22,6 +22,7 @@ export function createPerson(attributes) {
     model: 'person',
     collection: 'people',
     attributes,
+    reset: true,
   });
 }
 

@@ -66,7 +66,7 @@ export function create({ model, collection, attributes, reset, after }) {
     }).catch((response) => {
       const errorMessages = prettify(response);
       Object.keys(errorMessages).forEach(name =>
-        dispatch(actions.setErrors(`${model}.${name}`, errors[name]))
+        dispatch(actions.setErrors(`${model}.${name}`, errorMessages[name]))
       );
       dispatch(actions.setSubmitFailed(model));
     });

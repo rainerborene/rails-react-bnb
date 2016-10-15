@@ -5,10 +5,12 @@ import thunk from 'redux-thunk';
 import reducers from './reducers';
 import { prettify } from './jsonapi';
 
+const DB = window.DB || {};
+
 const initialState = {
-  households: prettify(window.DB.households),
-  people: prettify(window.DB.people),
-  vehicles: prettify(window.DB.vehicles),
+  households: prettify(DB.households || []),
+  people: prettify(DB.people || []),
+  vehicles: prettify(DB.vehicles || []),
   wizard: { step: 1 },
 };
 

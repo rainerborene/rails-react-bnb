@@ -9,12 +9,14 @@
   <body>
     <%= yield %>
 
+    <!-- For debugging purpose
     <%= javascript_tag do %>
       var DB = {};
       DB.households = <%= raw serialize_collection(@households).to_json %>;
       DB.people = <%= raw serialize_collection(@people).to_json %>;
       DB.vehicles = <%= raw serialize_collection(@vehicles).to_json %>;
     <% end %>
+    -->
 
     <%= javascript_include_tag 'vendor.bundle' %>
     <%= javascript_include_tag 'bundle' %>
